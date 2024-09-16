@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+</head>
+<body class="font-[Arial,_sans-serif] bg-[#f0f4f8] m-0 flex justify-center items-center h-screen">
+    <div class="contact-form bg-[#ffffff] p-[20px] rounded-[8px] [box-shadow:0_4px_8px_rgba(0,_0,_0,_0.2)] w-[500px]">
+        <h2 class="mt-0">Contact Us</h2>
+        <form id="contactForm">
+            <div class="form-field mb-[15px]">
+                <label class="block mb-[5px]" for="name">Name</label>
+                <input type="text" id="name" name="name" required class="w-full p-[8px] box-border rounded-[4px] border-[1px] border-[solid] border-[#ccc]">
+            </div>
+            <div class="form-field  mb-[15px]">
+                <label class="block mb-[5px]" for="email">Email</label>
+                <input type="email" id="email" name="email" required class="w-full p-[8px] box-border rounded-[4px] border-[1px] border-[solid] border-[#ccc]">
+            </div>
+            <div class="form-field  mb-[15px]">
+                <label class="block mb-[5px]" for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required class="w-full p-[8px] box-border rounded-[4px] border-[1px] border-[solid] border-[#ccc] resize-y"></textarea>
+            </div>
+            <button type="submit" class="submit-btn bg-[#007BFF] text-[#ffffff] border-[none] p-[10px] rounded-[4px] cursor-pointer w-full hover:bg-[#0056b3]">Submit</button>
+        </form>
+    </div>
+
+    <div class="popup hidden bg-[rgba(0,_0,_0,_0.7)] fixed top-[0] left-[0] w-full h-full justify-center items-center" id="popup">
+        <div class="popup-inner bg-[#fff] p-[20px] rounded-[8px] text-center w-[300px]" id="popupInner">
+            <!-- Popup content will be injected here -->
+        </div>
+    </div>
+
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const popup = document.getElementById('popup');
+        const popupInner = document.getElementById('popupInner');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const popupContent = `
+                <h2>Submitted Details</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Message:</strong> ${message}</p>
+                <button onclick="closePopup()" class="submit-btn bg-[#007BFF] text-[#ffffff] border-[none] p-[10px] rounded-[4px] cursor-pointer w-full hover:bg-[#0056b3]">Close</button>
+            `;
+            popupInner.innerHTML = popupContent;
+            popup.style.display = 'flex';
+        });
+
+        function closePopup() {
+            popup.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
